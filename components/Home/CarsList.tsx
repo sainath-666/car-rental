@@ -18,7 +18,7 @@ function CarsList(props: { carsList?: Car[] }) {
   const cars = props.carsList || [];
 
   return (
-    <div>
+    <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
       {cars.map((car: Car) => (
         <div key={car.id}>
           <CarCard car={car} />
