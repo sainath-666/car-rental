@@ -56,3 +56,30 @@ export const getStoreLocation = async () => {
   const result = await request(MASTER_URL, query);
   return result;
 };
+
+export const createBooking = async (formValue: any) => {
+  const mutationQuery = gql`
+    mutation CreateBooking($data: BookingCreateInput!) {
+      createBooking(data: $data) {
+        id
+      }
+    }
+  `;
+
+  const variables = {
+    data: {
+      carId: formValue.carId,  // This is already in the correct format: { connect: { id: "..." } }
+      dropOffDate: formValue.dropOffDate,
+      dropOffTime: formValue.dropOffTime,
+      userName: formValue.userName,
+      pickUpDate: formValue.pickUpDate,
+      pickUpTime: formValue.pickUpTime,
+      contactNumber: formValue.contactNumber,
+      location: formValue.location,
+    },
+  };
+
+  console.log("Mutation variables:", variables);
+  const result = await request(MASTER_URL, mutationQuery, variables);
+  return result;
+};

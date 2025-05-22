@@ -28,7 +28,7 @@ function CarCard(props: any) {
       </h2>
       <Image
         src={car.image?.url}
-        alt={car.name}
+        alt={car?.name}
         width={220}
         height={200}
         className="w-[250px] h-[150px]

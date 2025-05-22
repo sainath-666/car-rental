@@ -15,13 +15,10 @@ function BookingModal({ car }: any) {
           <CarCard car={car} />
         </div>
         <div>
-          <Form />
+          <Form car={car} />
         </div>
       </div>
-      <div className="modal-action">
-        <button className="btn bg-gray-500 hover:bg-gray-900">Close</button>
-        <button className="btn bg-blue-500 hover:bg-blue-900">Save</button>
-      </div>
+
     </form>
   );
 }
