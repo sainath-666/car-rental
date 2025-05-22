@@ -17,9 +17,7 @@ interface CarListResponse {
   carLists: Car[];
 }
 
-const MASTER_URL =
-  "https://ap-south-1.cdn.hygraph.com/content/cmaxsyp1300do07wc1bji9kg9/master";
-
+const MASTER_URL = process.env.NEXT_PUBLIC_GRAPHQL_API_URL as string;
 export const getCarsList = async () => {
   const query = gql`
     query CarLists {
@@ -68,7 +66,7 @@ export const createBooking = async (formValue: any) => {
 
   const variables = {
     data: {
-      carId: formValue.carId,  // This is already in the correct format: { connect: { id: "..." } }
+      carId: formValue.carId, // This is already in the correct format: { connect: { id: "..." } }
       dropOffDate: formValue.dropOffDate,
       dropOffTime: formValue.dropOffTime,
       userName: formValue.userName,
