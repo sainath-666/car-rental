@@ -17,6 +17,9 @@ interface CarListResponse {
   carLists: Car[];
 }
 
+const MASTER_URL =
+  "https://ap-south-1.cdn.hygraph.com/content/cmaxsyp1300do07wc1bji9kg9/master";
+
 export const getCarsList = async () => {
   const query = gql`
     query CarLists {
@@ -31,16 +34,25 @@ export const getCarsList = async () => {
         createdAt
         publishedAt
         updatedAt
-        
+
         image {
           url
         }
       }
     }
   `;
-  const result = await request<CarListResponse>(
-    "https://ap-south-1.cdn.hygraph.com/content/cmaxsyp1300do07wc1bji9kg9/master",
-    query
-  );
+  const result = await request<CarListResponse>(MASTER_URL, query);
   return result.carLists;
+};
+
+export const getStoreLocation = async () => {
+  const query = gql`
+    query storeLocation {
+      storesLocations {
+        address
+      }
+    }
+  `;
+  const result = await request(MASTER_URL, query);
+  return result;
 };
