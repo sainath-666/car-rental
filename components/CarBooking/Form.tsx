@@ -1,8 +1,10 @@
+import { BookCreatedFlagContext } from "@/context/BookCreatedFlagContext";
 import { createBooking, getStoreLocation } from "@/services";
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 
 function Form({ car }: any) {
   const [storeLocation, setStoreLocation] = useState<any>([]);
+  const { showToastMsg, setShowToastMsg } = useContext(BookCreatedFlagContext);
   const [error, setError] = useState<string>("");
   const [formValue, setFormValue] = useState<any>({
     location: "",
@@ -60,8 +62,12 @@ function Form({ car }: any) {
       console.log("Submitting form data:", formValue);
       const resp = await createBooking(formValue);
       console.log("Booking Created:", resp);
-
-      // You might want to show a success message or close the modal here
+      if (resp) {
+        setShowToastMsg(true);
+        setTimeout(() => {
+          setShowToastMsg(false);
+        }, 5000);
+      }
     } catch (err: any) {
       console.error("Booking creation failed:", err);
       setError(err.message || "Failed to create booking. Please try again.");

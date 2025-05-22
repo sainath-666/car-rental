@@ -3,6 +3,8 @@ import CarFiltersOption from "@/components/Home/CarFiltersOption";
 import CarsList from "@/components/Home/CarsList";
 import Hero from "@/components/Home/Hero";
 import SearchInput from "@/components/Home/SearchInput";
+import ToastMsg from "@/components/ToastMsg";
+import { BookCreatedFlagContext } from "@/context/BookCreatedFlagContext";
 import { getCarsList } from "@/services";
 import { useEffect, useState } from "react";
 
@@ -22,6 +24,7 @@ interface Car {
 export default function Home() {
   const [carsList, setCarsList] = useState<Car[]>([]);
   const [carsOrgList, setCarsOrgList] = useState<Car[]>([]);
+  const [showToastMsg, setShowToastMsg] = useState<boolean>(false);
 
   useEffect(() => {
     getCarList_();
@@ -57,14 +60,17 @@ export default function Home() {
 
   return (
     <div className="p-5 sm:px-10 md:px-20">
-      <Hero />
-      <SearchInput />
-      <CarFiltersOption
-        carsList={carsOrgList}
-        orderCarList={orderCarList}
-        setBrand={filterCarList}
-      />
-      <CarsList carsList={carsList} />
+      <BookCreatedFlagContext.Provider value={{showToastMsg, setShowToastMsg}}>
+        <Hero />
+        <SearchInput />
+        <CarFiltersOption
+          carsList={carsOrgList}
+          orderCarList={orderCarList}
+          setBrand={filterCarList}
+        />
+        <CarsList carsList={carsList} />
+        {showToastMsg?<ToastMsg msg={'Booking Created Successfully!'} />:null}
+      </BookCreatedFlagContext.Provider>
     </div>
   );
 }
