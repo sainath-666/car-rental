@@ -32,7 +32,6 @@ function Form({ car }: any) {
 
   const getStoreLocation_ = async () => {
     const resp: any = await getStoreLocation();
-    console.log("Store Location", resp);
     setStoreLocation(resp?.storesLocations);
   };
 
@@ -59,9 +58,7 @@ function Form({ car }: any) {
       }
 
       setError("");
-      console.log("Submitting form data:", formValue);
       const resp = await createBooking(formValue);
-      console.log("Booking Created:", resp);
       if (resp) {
         setShowToastMsg(true);
         setTimeout(() => {
