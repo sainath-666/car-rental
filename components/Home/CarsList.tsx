@@ -20,14 +20,19 @@ function CarsList(props: { carsList?: Car[] }) {
   const [selectedCar, setSelectedCar] = useState<any>([]);
 
   return (
-    <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+    <div
+      id="car-list"
+      className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4"
+    >
       {cars.map((car: Car) => (
-        <div key={car.id} 
-        onClick={() => {(window as any).my_modal_4.showModal(); setSelectedCar(car)}}
+        <div
+          key={car.id}
+          onClick={() => {
+            (window as any).my_modal_4.showModal();
+            setSelectedCar(car);
+          }}
         >
-          <CarCard car={car}
-          
-          />
+          <CarCard car={car} />
         </div>
       ))}
       {/* You can open the modal using document.getElementById('ID').showModal() method */}
