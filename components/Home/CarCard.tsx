@@ -21,7 +21,7 @@ function CarCard(props: any) {
       <div
         className="group p-2 sm:
     hover:border-[1px] cursor-pointer
-    border-blue-500"
+    border-blue-500 hover:rounded-lg hover:bg-gray-700"
       >
         <h2 className="text-[20px] font-medium mb-2 ">{car?.name}</h2>
         <h2 className="text-[28px] font-bold mb-2">
@@ -33,7 +33,7 @@ function CarCard(props: any) {
           src={car.image?.url || defaultCarImage}
           alt={car?.name || "Car image"}
           width={220}
-          height={200}
+          height={220}
           className="w-[250px] h-[150px] mb-3 object-contain"
         />
         <div className="flex justify-around group-hover:hidden">

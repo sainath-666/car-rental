@@ -49,7 +49,7 @@ function CarFiltersOption({
   return (
     <div className="mt-10 flex items-center justify-between">
       <div>
-        <h2 className="text-[30px]">Car Catalog</h2>
+        <h2 className="text-[30px]">Available Cars</h2>
         <h2>Explore Our Cars You Might Like</h2>
       </div>
       <div className="flex gap-5">

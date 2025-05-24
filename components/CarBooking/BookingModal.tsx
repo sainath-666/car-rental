@@ -10,7 +10,7 @@ function BookingModal({ car }: any) {
           Rent a Car Now!
         </h3>
       </div>
-      <div className="grid grid-cols-1 md:grid-cols-2">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-5 mt-5">
         <div>
           <CarCard car={car} />
         </div>
