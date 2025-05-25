@@ -26,6 +26,15 @@ export default function Home() {
   const [carsOrgList, setCarsOrgList] = useState<Car[]>([]);
   const [showToastMsg, setShowToastMsg] = useState<boolean>(false);
 
+  // Fisher-Yates shuffle algorithm
+  const shuffleArray = (array: Car[]) => {
+    for (let i = array.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [array[i], array[j]] = [array[j], array[i]];
+    }
+    return array;
+  };
+
   useEffect(() => {
     getCarList_();
   }, []);
@@ -33,7 +42,8 @@ export default function Home() {
   const getCarList_ = async () => {
     try {
       const cars = await getCarsList();
-      setCarsList(cars || []);
+      const shuffledCars = shuffleArray([...(cars || [])]);
+      setCarsList(shuffledCars);
       setCarsOrgList(cars || []);
     } catch (error) {
       console.error("Error fetching cars:", error);
@@ -60,7 +70,9 @@ export default function Home() {
 
   return (
     <div className="p-5 sm:px-10 md:px-20">
-      <BookCreatedFlagContext.Provider value={{showToastMsg, setShowToastMsg}}>
+      <BookCreatedFlagContext.Provider
+        value={{ showToastMsg, setShowToastMsg }}
+      >
         <Hero />
         <SearchInput />
         <CarFiltersOption
@@ -69,7 +81,9 @@ export default function Home() {
           setBrand={filterCarList}
         />
         <CarsList carsList={carsList} />
-        {showToastMsg?<ToastMsg msg={'Booking Created Successfully!'} />:null}
+        {showToastMsg ? (
+          <ToastMsg msg={"Booking Created Successfully!"} />
+        ) : null}
       </BookCreatedFlagContext.Provider>
     </div>
   );

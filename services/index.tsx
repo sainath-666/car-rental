@@ -21,7 +21,7 @@ const MASTER_URL = "https://ap-south-1.cdn.hygraph.com/content/cmaxsyp1300do07wc
 export const getCarsList = async () => {
   const query = gql`
     query CarLists {
-      carLists(first: 25) {
+      carLists(first: 50) {
         name
         id
         carAvg
