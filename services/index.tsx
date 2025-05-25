@@ -21,7 +21,7 @@ const MASTER_URL = process.env.NEXT_PUBLIC_GRAPHQL_API_URL as string;
 export const getCarsList = async () => {
   const query = gql`
     query CarLists {
-      carLists {
+      carLists(first: 25) {
         name
         id
         carAvg
@@ -32,7 +32,6 @@ export const getCarsList = async () => {
         createdAt
         publishedAt
         updatedAt
-
         image {
           url
         }

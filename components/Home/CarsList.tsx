@@ -18,24 +18,28 @@ interface Car {
 function CarsList(props: { carsList?: Car[] }) {
   const cars = props.carsList || [];
   const [selectedCar, setSelectedCar] = useState<any>([]);
+  const isLoading = cars.length === 0;
+
+  const loadingArray = Array(6).fill(0);
 
   return (
     <div
       id="car-list"
       className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4"
     >
-      {cars.map((car: Car) => (
-        <div
-          key={car.id}
-          onClick={() => {
-            (window as any).my_modal_4.showModal();
-            setSelectedCar(car);
-          }}
-        >
-          <CarCard car={car} />
-        </div>
-      ))}
-      {/* You can open the modal using document.getElementById('ID').showModal() method */}
+      {isLoading
+        ? loadingArray.map((_, index) => <CarCard key={index} car={null} />)
+        : cars.map((car: Car) => (
+            <div
+              key={car.id}
+              onClick={() => {
+                (window as any).my_modal_4.showModal();
+                setSelectedCar(car);
+              }}
+            >
+              <CarCard car={car} />
+            </div>
+          ))}
       <dialog id="my_modal_4" className="modal">
         <BookingModal car={selectedCar} />
       </dialog>

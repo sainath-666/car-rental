@@ -4,7 +4,11 @@ import React from "react";
 function Hero() {
   const handleExploreClick = () => {
     const element = document.getElementById("car-list");
-    element?.scrollIntoView({ behavior: "smooth" });
+    if (element) {
+      setTimeout(() => {
+        element.scrollIntoView({ behavior: "smooth", block: "start" });
+      }, 100);
+    }
   };
 
   return (
@@ -30,11 +34,11 @@ function Hero() {
       </div>
       <div>
         <Image
-          src="/logo.png"
+          src="/hero-car.jpg"
           alt="image"
-          width={400}
-          height={500}
-          className="w-full object-cover"
+          width={600}
+          height={600}
+          className="w-full h-full object-cover rounded-lg  md:ml-10 mt-5 md:mt-0"
         />
       </div>
     </div>

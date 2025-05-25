@@ -81,7 +81,7 @@ function Form({ car }: any) {
           name="location"
           onChange={handleChange}
         >
-          <option disabled defaultValue={""}>
+          <option disabled value="">
             PickUp Location
           </option>
           {storeLocation &&
@@ -92,21 +92,24 @@ function Form({ car }: any) {
       </div>
       <div className="flex flec-col gap-5 mb-5">
         <div className="flex flex-col w-full">
-          <label className="text-gray-400">PickUp Date</label>
+          <label className="text-gray-400">PickUp Date</label>{" "}
           <input
             type="date"
-            placeholder="Type here"
+            min={new Date().toISOString().split("T")[0]}
+            defaultValue={new Date().toISOString().split("T")[0]}
             name="pickUpDate"
             onChange={handleChange}
             className="input input-bordered w-full max-w-lg"
           />
         </div>
         <div className="flex flex-col w-full">
-          <label className="text-gray-400">Drop Off Date</label>
+          <label className="text-gray-400">Drop Off Date</label>{" "}
           <input
             type="date"
             placeholder="Type here"
             name="dropOffDate"
+            defaultValue={new Date().toISOString().split("T")[0]}
+            min={new Date().toISOString().split("T")[0]}
             onChange={handleChange}
             className="input input-bordered w-full max-w-lg"
           />
@@ -114,20 +117,26 @@ function Form({ car }: any) {
       </div>
       <div className="flex flec-col gap-5 mb-5">
         <div className="flex flex-col w-full">
-          <label className="text-gray-400">PickUp Time</label>
+          <label className="text-gray-400">PickUp Time</label>{" "}
           <input
             type="time"
-            placeholder="Type here"
+            defaultValue={new Date().toLocaleTimeString([], {
+              hour: "2-digit",
+              minute: "2-digit",
+            })}
             name="pickUpTime"
             onChange={handleChange}
             className="input input-bordered w-full max-w-lg"
           />
         </div>
         <div className="flex flex-col w-full">
-          <label className="text-gray-400">Drop Off Time</label>
+          <label className="text-gray-400">Drop Off Time</label>{" "}
           <input
             type="time"
-            placeholder="Type here"
+            defaultValue={new Date().toLocaleTimeString([], {
+              hour: "2-digit",
+              minute: "2-digit",
+            })}
             name="dropOffTime"
             onChange={handleChange}
             className="input input-bordered w-full max-w-lg"

@@ -6,15 +6,31 @@ import { PiSteeringWheelFill } from "react-icons/pi";
 
 function CarCard(props: any) {
   const [car, setCar] = useState<any>();
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     if (props.car) {
       setCar(props.car);
+      setLoading(false);
     }
   }, [props.car]);
 
-  // Default image URL if none is provided
   const defaultCarImage = "/logo.png"; // Using your logo as fallback, you can change this to any default car image
+
+  if (loading) {
+    return (
+      <div className="p-2">
+        <div className="skeleton h-6 w-2/3 mb-2"></div>
+        <div className="skeleton h-8 w-1/3 mb-2"></div>
+        <div className="skeleton h-[150px] w-[250px] mb-3"></div>
+        <div className="flex justify-around">
+          <div className="skeleton h-16 w-16"></div>
+          <div className="skeleton h-16 w-16"></div>
+          <div className="skeleton h-16 w-16"></div>
+        </div>
+      </div>
+    );
+  }
 
   return (
     car && (
@@ -32,10 +48,10 @@ function CarCard(props: any) {
         <Image
           src={car.image?.url || defaultCarImage}
           alt={car?.name || "Car image"}
-          width={220}
-          height={220}
-          className="w-[250px] h-[150px] mb-3 object-contain"
-        />
+          width={300}
+          height={300}
+          className="w-full h-[150px] object-cover rounded-lg mb-3"
+          />
         <div className="flex justify-around group-hover:hidden">
           <div className="text-center text-gray-500">
             <PiSteeringWheelFill className="w-full text-[22px] mb-2" />

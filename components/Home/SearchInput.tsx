@@ -38,6 +38,8 @@ function SearchInput() {
           <div>
             <input
               type="date"
+              defaultValue={new Date().toISOString().split("T")[0]}
+              min={new Date().toISOString().split("T")[0]}
               className="p-2 outline-none  "
             />
           </div>
