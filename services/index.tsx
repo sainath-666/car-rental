@@ -17,7 +17,7 @@ interface CarListResponse {
   carLists: Car[];
 }
 
-const MASTER_URL = process.env.NEXT_PUBLIC_GRAPHQL_API_URL as string;
+const MASTER_URL = "https://ap-south-1.cdn.hygraph.com/content/cmaxsyp1300do07wc1bji9kg9/master"
 export const getCarsList = async () => {
   const query = gql`
     query CarLists {
